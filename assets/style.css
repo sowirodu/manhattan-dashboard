@@ -1,0 +1,105 @@
+/* Main containers */
+.header {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.metrics-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.prediction-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.prediction-interface {
+    display: flex;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.country-selector-container {
+    width: 30%;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.indicators-container {
+    width: 70%;
+    padding: 15px;
+}
+
+/* Input fields and tooltips */
+.tooltip-icon {
+    margin-left: 5px;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.tooltip-icon:hover {
+    color: #0056b3;
+}
+
+/* Prediction output */
+.prediction-output {
+    font-size: 24px;
+    margin: 20px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.prediction-value {
+    font-weight: bold;
+    font-size: 28px;
+    color: #2c3e50;
+}
+
+.prediction-note {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+/* Buttons */
+.predict-button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #0074D9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.predict-button:hover {
+    background-color: #005ea6;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Data explorer */
+.data-explorer-container {
+    margin: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
