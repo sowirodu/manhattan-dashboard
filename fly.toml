@@ -1,15 +1,19 @@
-# fly.toml
-app = "manhattan-dashboard-gc"  # Change to your preferred app name
+app = "manhattan-dashboard-gc"
 
 [build]
   builder = "paketobuildpacks/builder:base"
+  # OR use explicit Dockerfile:
+  # dockerfile = "Dockerfile"
 
 [env]
   PORT = "8050"
+  # Dash-specific optimizations:
+  WEB_CONCURRENCY = "2"
+  GUNICORN_CMD_ARGS = "--workers=2 --threads=2 --timeout 120"
 
 [http_service]
   internal_port = 8050
   force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 0
+  # Recommended for dashboards:
+  auto_stop_machines = false
+  min_machines_running = 1

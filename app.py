@@ -5,9 +5,9 @@ from callbacks import register_callbacks
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import Ridge
+import os
 
-# Load and prepare data
-df = pd.read_csv("dataset_to_model_with.csv")
+df = pd.read_csv(os.path.join(os.path.dirname(__file__), "dataset_to_model_with.csv"))
 
 # Data processing and model setup
 lagged_df = df[[col for col in df.columns if col in ['OECD', 'Year', 'Central Government Debt (Percent of GDP)'] or col.endswith('_lag1')]]
