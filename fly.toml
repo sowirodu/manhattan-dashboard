@@ -1,5 +1,5 @@
 # fly.toml
-app = "your-app-name"  # Change to your preferred app name
+app = "manhattan-dashboard-gc"  # Change to your preferred app name
 
 [build]
   builder = "paketobuildpacks/builder:base"
