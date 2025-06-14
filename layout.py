@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output, State
 # Dictionary of variable descriptions for tooltips
 VARIABLE_DESCRIPTIONS = {
     'Central Government Debt (Percent of GDP)_lag1': 'Previous year\'s central government debt as percentage of GDP',
-    'LongInterestRate_lag1': 'Previous year\'s long-term interest rate (%)',
+    'LongInterestRate_lag1': 'Previous year\'s long-term interest rate (%). The interest charged on loans or debt instruments with maturities that extend over several years.',
     'GovernmentExpenditure_Housing and community amenities_lag1': 'Previous year\'s govt spending on housing/community',
     'GovernmentExpenditure_Fuel and energy_lag1': 'Previous year\'s govt spending on fuel and energy',
     'GovernmentExpenditure_Education_lag1': 'Previous year\'s govt spending on education',
@@ -13,10 +13,22 @@ VARIABLE_DESCRIPTIONS = {
     'GovernmentExpenditure_Health_lag1': 'Previous year\'s govt spending on health'
 }
 
+def format_label_name(col_name):
+    # Remove "_lag1" if present
+    cleaned = col_name.replace('_lag1', '')
+    # Replace underscores with spaces
+    cleaned = cleaned.replace('_', ' ')
+    # Add colons before subcategories
+    if "GovernmentExpenditure" in cleaned:
+        cleaned = cleaned.replace("GovernmentExpenditure", "Government Expenditure:")
+    if "LongInterestRate" in cleaned:
+        cleaned = cleaned.replace("LongInterestRate", "Long Interest Rate")
+    return cleaned.strip()
+
 def create_layout(df, selected_features_ridge):
     return html.Div([
         dcc.Location(id='url', refresh=False),
-        html.H1("OECD Countries Debt as Percent of GDP Dashboard", className='header'),
+        html.H1("OECD Country Debt-to-GDP Ratio Prediction", className='header'),
         
         html.Div([
             html.H3("Ridge Regression Model"),
@@ -24,7 +36,8 @@ def create_layout(df, selected_features_ridge):
         ], className='metrics-container'),
         
         html.Div([
-            html.H3("Make New Predictions"),
+            html.H3("Generate Debt-to-GDP Ratio Prediction"),
+            html.Div("Select a country and input the values for the indicators to predict the Debt-to-GDP ratio. Current values are set to 2023 values to predict 2024 Debt-to-GDP ratio.", className='description'),
             html.Div([
                 html.Div([
                     dcc.Dropdown(
@@ -33,7 +46,7 @@ def create_layout(df, selected_features_ridge):
                         value='United States',
                         style={'margin-bottom': '20px'}
                     ),
-                    html.Button('Predict Debt', id='predict-button', className='predict-button')
+                    html.Button('Predict Debt-to-GDP Ratio', id='predict-button', className='predict-button')
                 ], className='country-selector-container'),
                 
                 html.Div([
@@ -93,14 +106,24 @@ def create_input_field(col):
     
     return html.Div([
         html.Div([
-            html.Label(col, style={'margin-bottom': '5px', 'font-weight': 'bold'}),
-            html.Span(" 🔑", style={'color': '#FFD700', 'margin-left': '5px'}) if is_key_predictor else None,
+            html.Label(format_label_name(col), style={'margin-bottom': '5px', 'font-weight': 'bold'}),
+            html.Span(
+                " 🔑", 
+                style={'color': '#FFD700', 'margin-left': '5px'},
+                id=f'key-icon-{col}'
+            ) if is_key_predictor else None,
             html.Span(" ⓘ", className='tooltip-icon', id=f'tooltip-target-{col}'),
             dbc.Tooltip(
                 VARIABLE_DESCRIPTIONS.get(col, 'No description available'),
                 target=f'tooltip-target-{col}',
                 placement='right'
-            )
+            ),
+            # Add this new tooltip for the key icon
+            dbc.Tooltip(
+                "Key Indicator - This variable has significant predictive power",
+                target=f'key-icon-{col}',
+                placement='right'
+            ) if is_key_predictor else None
         ], style={'display': 'flex', 'align-items': 'center'}),
         dcc.Input(
             id=f'input-{col}',

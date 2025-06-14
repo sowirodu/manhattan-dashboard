@@ -2,26 +2,28 @@
 .header {
     text-align: center;
     color: #2c3e50;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
+    margin-bottom: 15px;  /* Reduced from 20px */
+    padding-bottom: 8px;  /* Reduced from 10px */
     border-bottom: 2px solid #eee;
 }
 
 .metrics-container {
-    margin: 20px;
-    padding: 20px;
+    margin: 15px;  /* Reduced from 20px */
+    padding: 15px;  /* Reduced from 20px */
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f8f9fa;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
+/* Updated prediction container with reduced height */
 .prediction-container {
-    margin: 20px;
-    padding: 20px;
+    margin: 15px;  /* Reduced from 20px */
+    padding: 15px;  /* Reduced from 20px */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-height: auto;  /* Changed from fixed height */
 }
 
 .prediction-interface {
@@ -29,17 +31,30 @@
     border: 1px solid #eee;
     border-radius: 8px;
     overflow: hidden;
+    height: auto;  /* Added for flexible height */
 }
 
 .country-selector-container {
     width: 30%;
-    padding: 20px;
+    padding: 15px;  /* Reduced from 20px */
     background-color: #f5f5f5;
 }
 
 .indicators-container {
     width: 70%;
-    padding: 15px;
+    padding: 10px;  /* Reduced from 15px */
+}
+
+/* Tighter input field spacing */
+.indicators-container > div > div {
+    margin: 8px 0;  /* Reduced vertical spacing */
+}
+
+/* More compact inputs */
+.dcc-input {
+    padding: 6px 8px !important;  /* Reduced padding */
+    margin: 3px 0 !important;  /* Reduced margin */
+    height: auto !important;
 }
 
 /* Input fields and tooltips */
@@ -54,11 +69,11 @@
     color: #0056b3;
 }
 
-/* Prediction output */
+/* More compact prediction output */
 .prediction-output {
-    font-size: 24px;
-    margin: 20px;
-    padding: 25px;
+    font-size: 20px;  /* Reduced from 24px */
+    margin: 15px;  /* Reduced from 20px */
+    padding: 15px;  /* Reduced from 25px */
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -66,19 +81,19 @@
 
 .prediction-value {
     font-weight: bold;
-    font-size: 28px;
+    font-size: 24px;  /* Reduced from 28px */
     color: #2c3e50;
 }
 
 .prediction-note {
     color: #6c757d;
-    font-size: 0.9em;
+    font-size: 0.8em;  /* Reduced from 0.9em */
 }
 
-/* Buttons */
+/* More compact button */
 .predict-button {
-    margin-top: 20px;
-    padding: 12px 24px;
+    margin-top: 15px;  /* Reduced from 20px */
+    padding: 10px 20px;  /* Reduced from 12px 24px */
     background-color: #0074D9;
     color: white;
     border: none;
@@ -97,9 +112,22 @@
 
 /* Data explorer */
 .data-explorer-container {
-    margin: 20px;
+    margin: 15px;  /* Reduced from 20px */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     overflow: hidden;
+}
+
+/* Additional compact styles */
+.dcc-dropdown {
+    min-height: 36px !important;  /* More compact dropdown */
+}
+
+.dcc-dropdown .Select-control {
+    height: 36px !important;
+}
+
+.dcc-dropdown .Select-value-label {
+    line-height: 36px !important;
 }
